@@ -47,7 +47,7 @@ const MobileSidebar=({ onClose, action }: MobileSidebarProps)=> {
         className={`${styles.link} styles.active : ""
         }`}
       >
-        Lendsqr
+        Melend
       </Link>
       <Link
         href="#"
