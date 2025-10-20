@@ -1,4 +1,4 @@
-# Lendsqr FE Test - Admin Dashboard
+# Melend FE Test - Admin Dashboard
 
 A clean, mobile-responsive admin dashboard built with **Next.js 15**, **TypeScript**, **SCSS Modules**, and **MockAPI** as a cloud backend.
 
@@ -6,13 +6,13 @@ A clean, mobile-responsive admin dashboard built with **Next.js 15**, **TypeScri
 
 ### 🚀 Live Deployment
 
-🔗 [https://solomon-great-lendsqr-fe-test.vercel.app/login](https://solomon-great-lendsqr-fe-test.vercel.app/login)
+🔗 [https://solomon-great-melend-fe-test.vercel.app/login](https://solomon-great-melend-fe-test.vercel.app/login)
 
 ---
 
 ### 🔐 Admin Login Credentials
 
-- **Email:** `admin@lendsqr.com`  
+- **Email:** `admin@melend.com`  
 - **Password:** `admin123`
 
 ---

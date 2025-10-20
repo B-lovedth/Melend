@@ -30,7 +30,7 @@ const Sidebar = ({ action }: {action:()=>void}) => {
         className={`${styles.link} styles.active : ""
         }`}
       >
-        Lendsqr
+        Melend
       </Link>
       <Link
         href="#"

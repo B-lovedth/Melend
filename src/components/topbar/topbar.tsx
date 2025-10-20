@@ -13,7 +13,7 @@ const Topbar: React.FC<TopbarProps> = ({onMenuClick}:TopbarProps) => {
   return (
    <header className={styles.topbar}>
       <div className={styles.left}>
-        <img src="/img/logo.svg" alt="Lendsqr Logo" />
+        <img src="/img/logo.svg" alt="Melend Logo" />
       </div>
 
       <div className={styles.center}>

@@ -2,8 +2,8 @@ import Login from "./login"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
-    title: "Lendsqr Login",
-    description: "Login to your Lendsqr account",
+    title: "Melend Login",
+    description: "Login to your Melend account",
 }
 
 const loginPage=()=>{
