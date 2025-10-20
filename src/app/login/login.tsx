@@ -30,7 +30,7 @@ const Login=()=> {
   return (
  <div className={styles.container}>
       <div className={styles.logo}>
-        <img src="/img/logo.svg" alt="Lendsqr Logo" />
+        <img src="/img/logo.svg" alt="Melend Logo" />
       </div>
       
       <div className={styles.Wrapper}>

@@ -86,7 +86,7 @@ export const loanRequestsData = [
 
 // Mock data for Organizations
 export const organizationsData = [
-  { id: 1, name: 'Lendsqr', type: 'FinTech', employees: 150, status: 'Active', dateJoined: 'Jan 1, 2020' },
+  { id: 1, name: 'Melend', type: 'FinTech', employees: 150, status: 'Active', dateJoined: 'Jan 1, 2020' },
   { id: 2, name: 'GreatCorp', type: 'Technology', employees: 300, status: 'Active', dateJoined: 'Mar 15, 2021' },
   { id: 3, name: 'TechVentures', type: 'Consulting', employees: 75, status: 'Inactive', dateJoined: 'Jun 20, 2022' },
   { id: 4, name: 'InnovateHub', type: 'Software', employees: 200, status: 'Active', dateJoined: 'Sep 10, 2023' }
@@ -102,9 +102,9 @@ export const reportsData = [
 
 // Mock data for Audit Logs
 export const auditLogsData = [
-  { id: 1, action: 'User Login', performer: 'admin@lendsqr.com', ipAddress: '192.168.1.1', timestamp: 'Oct 20, 2024 10:30 AM', status: 'Success' },
-  { id: 2, action: 'User Status Update', performer: 'admin@lendsqr.com', ipAddress: '192.168.1.1', timestamp: 'Oct 20, 2024 10:15 AM', status: 'Success' },
-  { id: 3, action: 'Loan Approval', performer: 'manager@lendsqr.com', ipAddress: '192.168.1.5', timestamp: 'Oct 20, 2024 09:45 AM', status: 'Success' },
+  { id: 1, action: 'User Login', performer: 'admin@melend.com', ipAddress: '192.168.1.1', timestamp: 'Oct 20, 2024 10:30 AM', status: 'Success' },
+  { id: 2, action: 'User Status Update', performer: 'admin@melend.com', ipAddress: '192.168.1.1', timestamp: 'Oct 20, 2024 10:15 AM', status: 'Success' },
+  { id: 3, action: 'Loan Approval', performer: 'manager@melend.com', ipAddress: '192.168.1.5', timestamp: 'Oct 20, 2024 09:45 AM', status: 'Success' },
   { id: 4, action: 'Failed Login Attempt', performer: 'unknown@email.com', ipAddress: '203.45.67.89', timestamp: 'Oct 20, 2024 09:30 AM', status: 'Failed' }
 ];
 
