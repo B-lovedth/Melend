@@ -6,6 +6,7 @@ import UserFilters from "./user-filters/userFilters";
 import UsersTable from "./user-table/usersTable";
 import styles from "./page.module.scss";
 import { UserDetail } from "@/types/user";
+import { env } from "@/config/env";
 const UsersPage = () => {
   const [filters, setFilters] = useState<any>({});
   const [page, setPage] = useState(1);
@@ -16,7 +17,7 @@ const UsersPage = () => {
   const fetchUsers = async () => {
     try {
       const res = await fetch(
-        "https://688beb07cd9d22dda5cba641.mockapi.io/Users"
+        `${env.apiBaseUrl}/Users`
       );
       const data = await res.json();
       setUsers(data);

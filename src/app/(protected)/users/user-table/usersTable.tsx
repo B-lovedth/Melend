@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FaEye } from "react-icons/fa";
 import { FiFilter, FiMoreVertical } from "react-icons/fi";
+import { env } from "@/config/env";
 
 interface UsersTableProps {
   users: User[];
@@ -16,7 +17,7 @@ export default function UsersTable({ users, onFilterToggle }: UsersTableProps) {
 const [openActionUserId, setOpenActionUserId] = useState<string | null>(null)
   const router = useRouter();
    const changeStatus = async (status: string, id:string) => {
-    const res = await fetch(`https://688beb07cd9d22dda5cba641.mockapi.io/Users/${id}`, {
+    const res = await fetch(`${env.apiBaseUrl}/Users/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ status }),
