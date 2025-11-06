@@ -7,10 +7,10 @@ import { UserDetail } from "@/types/user";
 
 import styles from "./page.module.scss";
 import UserCards from "./user-cards/userCards";
-import UserFilters from "./user-filters/userFilters";
+import UserFiltersComponent, { UserFilters } from "./user-filters/userFilters";
 import UsersTable from "./user-table/usersTable";
 const UsersPage = () => {
-  const [filters, setFilters] = useState<Record<string, string>>({});
+  const [filters, setFilters] = useState<Partial<UserFilters>>({});
   const [page, setPage] = useState(1);
   const [showFilters, setShowFilters] = useState(false);
   const [pageSize, setPageSize] = useState(10);
@@ -32,7 +32,7 @@ const UsersPage = () => {
     setShowFilters((prev) => !prev);
   };
 
-  const handleFilter = (filters: Record<string, string>) => {
+  const handleFilter = (filters: UserFilters) => {
     setFilters(filters);
     setShowFilters(false);
   };
@@ -42,7 +42,7 @@ const UsersPage = () => {
       (!filters.organization || user.organization === filters.organization) &&
       (!filters.username || user.username.toLowerCase().includes(filters.username.toLowerCase())) &&
       (!filters.email || user.email.toLowerCase().includes(filters.email.toLowerCase())) &&
-      (!filters.phoneNumber || user.phoneNumber.includes(filters.phone)) &&
+      (!filters.phone || user.phoneNumber.includes(filters.phone)) &&
       (!filters.status || user.status === filters.status)
     );
   });
@@ -72,7 +72,7 @@ const UsersPage = () => {
       <h1>Users</h1>
       <UserCards />
       <div style={{ position: "relative" }}>
-        {showFilters && <UserFilters onFilter={handleFilter} />}
+        {showFilters && <UserFiltersComponent onFilter={handleFilter} />}
         <UsersTable users={paginated} onFilterToggle={handleToggleFilters} />
         <div
           style={{

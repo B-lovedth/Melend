@@ -3,12 +3,22 @@
 import { useState } from "react";
 
 import styles from "./userFilters.module.scss";
-export default function UserFilters({
+
+export interface UserFilters {
+  organization: string;
+  username: string;
+  email: string;
+  date: string;
+  phone: string;
+  status: string;
+}
+
+export default function UserFiltersComponent({
   onFilter,
 }: {
-  onFilter: (filters: Record<string, string>) => void;
+  onFilter: (filters: UserFilters) => void;
 }) {
-  const [filters, setFilters] = useState({
+  const [filters, setFilters] = useState<UserFilters>({
     organization: "",
     username: "",
     email: "",

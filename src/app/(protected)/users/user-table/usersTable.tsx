@@ -25,8 +25,8 @@ export default function UsersTable({ users, onFilterToggle }: UsersTableProps) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ status }),
     });
-    const updated = await res.json();
-    console.log(updated);
+    await res.json();
+    // Status updated successfully - could show a toast notification here
   };
   return (
     <div className={styles.tableWrapper}>
