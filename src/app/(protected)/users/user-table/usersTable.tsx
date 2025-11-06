@@ -1,11 +1,15 @@
 "use client";
-import Icon from "@/components/layout/icon";
-import styles from "./usersTable.module.scss";
-import { User } from "@/types/user";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
+
+import { useRouter } from "next/navigation";
 import { FaEye } from "react-icons/fa";
 import { FiFilter, FiMoreVertical } from "react-icons/fi";
+
+import Icon from "@/components/layout/icon";
+import { env } from "@/config/env";
+import { User } from "@/types/user";
+
+import styles from "./usersTable.module.scss";
 
 interface UsersTableProps {
   users: User[];
@@ -13,16 +17,16 @@ interface UsersTableProps {
 }
 
 export default function UsersTable({ users, onFilterToggle }: UsersTableProps) {
-const [openActionUserId, setOpenActionUserId] = useState<string | null>(null)
+  const [openActionUserId, setOpenActionUserId] = useState<string | null>(null);
   const router = useRouter();
-   const changeStatus = async (status: string, id:string) => {
-    const res = await fetch(`https://688beb07cd9d22dda5cba641.mockapi.io/Users/${id}`, {
+  const changeStatus = async (status: string, id: string) => {
+    const res = await fetch(`${env.apiBaseUrl}/Users/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ status }),
     });
-    const updated = await res.json();
-    console.log(updated)
+    await res.json();
+    // Status updated successfully - could show a toast notification here
   };
   return (
     <div className={styles.tableWrapper}>
@@ -51,51 +55,42 @@ const [openActionUserId, setOpenActionUserId] = useState<string | null>(null)
               <td>{user.phoneNumber}</td>
               <td>{user.dateJoined}</td>
               <td>
-                <span
-                  className={`${styles.badge} ${
-                    styles[user.status.toLowerCase()]
-                  }`}
-                >
+                <span className={`${styles.badge} ${styles[user.status.toLowerCase()]}`}>
                   {user.status}
                 </span>
               </td>
               <td>
                 <button
                   className={styles.actionButton}
-                  onClick={(e) => {
+                  onClick={() => {
                     setOpenActionUserId(openActionUserId === user.id ? null : user.id);
-                  }}> 
-                <FiMoreVertical className={styles.menuIcon} />
-                  </button>
+                  }}
+                >
+                  <FiMoreVertical className={styles.menuIcon} />
+                </button>
               </td>
-              {
-                openActionUserId === user.id &&(
-
-              <div className={styles.userActions}>
-                <button
-                  className={styles.viewDetails}
-                  onClick={() => router.push(`/users/${user.id}`)}
-                >
-                 <FaEye/> <span>View Details</span>
-                </button>
-                <button
-                  onClick={() =>
-                    changeStatus("Blacklisted", user.id)
-                   } 
-                >
-                <Icon src="/icons/user-delete.png" alt="Edit Icon" />
-                <span>  Blacklist User</span>
-                </button>
-                <button
-                  onClick={(e) => {
-                    changeStatus("Active", user.id);}}
-                >
-                <Icon src="/icons/user-check-outline.png" alt="Edit Icon" />
-                <span>Activate User</span>
-                </button>
-              </div>
-                )
-              }
+              {openActionUserId === user.id && (
+                <div className={styles.userActions}>
+                  <button
+                    className={styles.viewDetails}
+                    onClick={() => router.push(`/users/${user.id}`)}
+                  >
+                    <FaEye /> <span>View Details</span>
+                  </button>
+                  <button onClick={() => changeStatus("Blacklisted", user.id)}>
+                    <Icon src="/icons/user-delete.png" alt="Edit Icon" />
+                    <span> Blacklist User</span>
+                  </button>
+                  <button
+                    onClick={() => {
+                      changeStatus("Active", user.id);
+                    }}
+                  >
+                    <Icon src="/icons/user-check-outline.png" alt="Edit Icon" />
+                    <span>Activate User</span>
+                  </button>
+                </div>
+              )}
             </tr>
           ))}
         </tbody>

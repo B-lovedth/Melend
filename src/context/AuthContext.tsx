@@ -1,5 +1,6 @@
 "use client";
 import { createContext, useContext, useEffect, useState } from "react";
+import { env } from "@/config/env";
 
 interface AuthContextProps {
   user: string | null;
@@ -26,7 +27,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   const login = async (email: string, password: string) => {
     const res = await fetch(
-      `https://688beb07cd9d22dda5cba641.mockapi.io/userAuth?email=${email}&password=${password}`
+      `${env.apiBaseUrl}/userAuth?email=${email}&password=${password}`
     );
     const data = await res.json();
     if (!res.ok) {

@@ -6,6 +6,7 @@ import styles from "./details.module.scss";
 import { UserDetail } from "@/types/user";
 import { BsArrowLeft } from "react-icons/bs";
 import UserDetailsSkeleton from "@/components/layout/skeletonLoader/UserDetailsSkeleton";
+import { env } from "@/config/env";
 
 export default function UserDetailsPage() {
   const { id } = useParams();
@@ -26,7 +27,7 @@ export default function UserDetailsPage() {
   };
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await fetch(`https://688beb07cd9d22dda5cba641.mockapi.io/Users/${id}`);
+      const res = await fetch(`${env.apiBaseUrl}/Users/${id}`);
       const data = await res.json();
       setUser(data);
     };
@@ -36,7 +37,7 @@ export default function UserDetailsPage() {
   if (!user) return <UserDetailsSkeleton/>
   
   const changeStatus = async (status: string) => {
-    const res = await fetch(`https://688beb07cd9d22dda5cba641.mockapi.io/Users/${user.id}`, {
+    const res = await fetch(`${env.apiBaseUrl}/Users/${user.id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ status }),
