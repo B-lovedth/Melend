@@ -1,14 +1,16 @@
 "use client";
 
 import { useEffect, useState } from "react";
+
+import { env } from "@/config/env";
+import { UserDetail } from "@/types/user";
+
+import styles from "./page.module.scss";
 import UserCards from "./user-cards/userCards";
 import UserFilters from "./user-filters/userFilters";
 import UsersTable from "./user-table/usersTable";
-import styles from "./page.module.scss";
-import { UserDetail } from "@/types/user";
-import { env } from "@/config/env";
 const UsersPage = () => {
-  const [filters, setFilters] = useState<any>({});
+  const [filters, setFilters] = useState<Record<string, string>>({});
   const [page, setPage] = useState(1);
   const [showFilters, setShowFilters] = useState(false);
   const [pageSize, setPageSize] = useState(10);
@@ -16,9 +18,7 @@ const UsersPage = () => {
   const [users, setUsers] = useState<UserDetail[]>([]);
   const fetchUsers = async () => {
     try {
-      const res = await fetch(
-        `${env.apiBaseUrl}/Users`
-      );
+      const res = await fetch(`${env.apiBaseUrl}/Users`);
       const data = await res.json();
       setUsers(data);
     } catch (err) {
@@ -32,7 +32,7 @@ const UsersPage = () => {
     setShowFilters((prev) => !prev);
   };
 
-  const handleFilter = (filters: any) => {
+  const handleFilter = (filters: Record<string, string>) => {
     setFilters(filters);
     setShowFilters(false);
   };
@@ -40,10 +40,8 @@ const UsersPage = () => {
   const filtered = users.filter((user) => {
     return (
       (!filters.organization || user.organization === filters.organization) &&
-      (!filters.username ||
-        user.username.toLowerCase().includes(filters.username.toLowerCase())) &&
-      (!filters.email ||
-        user.email.toLowerCase().includes(filters.email.toLowerCase())) &&
+      (!filters.username || user.username.toLowerCase().includes(filters.username.toLowerCase())) &&
+      (!filters.email || user.email.toLowerCase().includes(filters.email.toLowerCase())) &&
       (!filters.phoneNumber || user.phoneNumber.includes(filters.phone)) &&
       (!filters.status || user.status === filters.status)
     );
@@ -56,11 +54,7 @@ const UsersPage = () => {
     const delta = 2;
     const range = [];
 
-    for (
-      let i = Math.max(2, current - delta);
-      i <= Math.min(total - 1, current + delta);
-      i++
-    ) {
+    for (let i = Math.max(2, current - delta); i <= Math.min(total - 1, current + delta); i++) {
       range.push(i);
     }
 
@@ -136,8 +130,8 @@ const UsersPage = () => {
                 style={{
                   padding: "6px 10px",
                   fontWeight: page === p ? "Bold" : "400",
-                  background:"transparent",
-                  color:"#000",
+                  background: "transparent",
+                  color: "#000",
                   border: "none",
                   borderRadius: 4,
                   cursor: p === "..." ? "default" : "pointer",

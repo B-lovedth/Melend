@@ -1,63 +1,52 @@
-import { sidebarSections } from "@/constants/navlinks";
-import styles from "./sidebar.module.scss";
-import { usePathname } from "next/navigation";
-import Icon from "../layout/icon";
-import Link from "next/link";
-import { useAuth } from "@/context/AuthContext";
 import { useState } from "react";
 
-const Sidebar = ({ action }: {action:()=>void}) => {
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+import { sidebarSections } from "@/constants/navlinks";
+
+import styles from "./sidebar.module.scss";
+import Icon from "../layout/icon";
+
+const Sidebar = ({ action }: { action: () => void }) => {
   const pathname = usePathname();
   const [isDropdown, setIsDropdown] = useState(false);
   return (
     <aside className={styles.sidebar}>
-     <div className={styles.section}>
-  <div className={styles.dropdown}>
-    <button className={styles.dropdownToggle}
-      onClick={() => setIsDropdown(!isDropdown)}>
-      <Icon
-        src="/icons/briefcase.png"
-        alt="briefcase"
-        size={20}
-        className={styles.icon}
-      />
-      Select an Organization
-    </button>
-    {isDropdown && (
-    <div className={styles.dropdownMenu}>
-      <Link
-        href="#"
-        className={`${styles.link} styles.active : ""
+      <div className={styles.section}>
+        <div className={styles.dropdown}>
+          <button className={styles.dropdownToggle} onClick={() => setIsDropdown(!isDropdown)}>
+            <Icon src="/icons/briefcase.png" alt="briefcase" size={20} className={styles.icon} />
+            Select an Organization
+          </button>
+          {isDropdown && (
+            <div className={styles.dropdownMenu}>
+              <Link
+                href="#"
+                className={`${styles.link} styles.active : ""
         }`}
-      >
-        Melend
-      </Link>
-      <Link
-        href="#"
-        className={`${styles.link} styles.active : ""
+              >
+                Melend
+              </Link>
+              <Link
+                href="#"
+                className={`${styles.link} styles.active : ""
         }`}
-      >
-        GreatCorp
-      </Link>
-    </div>
-    )}
-  </div>
-</div>
+              >
+                GreatCorp
+              </Link>
+            </div>
+          )}
+        </div>
+      </div>
 
       <div className={styles.section}>
         <div className={styles.linkGroup}>
           <Link
             href="/dashboard"
-            className={`${styles.link} ${
-              pathname === "/dashboard" ? styles.active : ""
-            }`}
+            className={`${styles.link} ${pathname === "/dashboard" ? styles.active : ""}`}
           >
-            <Icon
-              src="/icons/home.png"
-              alt="Dashboard"
-              size={20}
-              className={styles.icon}
-            />
+            <Icon src="/icons/home.png" alt="Dashboard" size={20} className={styles.icon} />
             Dashboard
           </Link>
         </div>
@@ -72,16 +61,9 @@ const Sidebar = ({ action }: {action:()=>void}) => {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`${styles.link} ${
-                    pathname === link.href ? styles.active : ""
-                  }`}
+                  className={`${styles.link} ${pathname === link.href ? styles.active : ""}`}
                 >
-                  <Icon
-                    src={link.icon}
-                    alt={link.label}
-                    size={20}
-                    className={styles.icon}
-                  />
+                  <Icon src={link.icon} alt={link.label} size={20} className={styles.icon} />
                   {link.label}
                 </Link>
               );
@@ -93,22 +75,15 @@ const Sidebar = ({ action }: {action:()=>void}) => {
         <div className={styles.linkGroup}>
           <button
             onClick={action}
-            className={`${styles.link} ${
-              pathname === "/profile" ? styles.active : ""
-            }`}
+            className={`${styles.link} ${pathname === "/profile" ? styles.active : ""}`}
           >
-            <Icon
-              src="/icons/sign-out.png"
-              alt="Profile"
-              size={20}
-              className={styles.icon}
-            />
+            <Icon src="/icons/sign-out.png" alt="Profile" size={20} className={styles.icon} />
             Logout
           </button>
         </div>
       </div>
     </aside>
   );
-}
+};
 
 export default Sidebar;

@@ -1,11 +1,13 @@
-'use client';
-import { loansData } from '@/constants/mockData';
-import styles from '../guarantors/page.module.scss';
-import { FaMoneyBillWave, FaCheckCircle, FaClock, FaTimesCircle } from 'react-icons/fa';
+"use client";
+import { FaMoneyBillWave, FaCheckCircle, FaClock } from "react-icons/fa";
+
+import { loansData } from "@/constants/mockData";
+
+import styles from "../guarantors/page.module.scss";
 
 export default function LoansPage() {
-  const activeLoans = loansData.filter(l => l.status === 'Active').length;
-  const pendingLoans = loansData.filter(l => l.status === 'Pending').length;
+  const activeLoans = loansData.filter((l) => l.status === "Active").length;
+  const pendingLoans = loansData.filter((l) => l.status === "Pending").length;
 
   return (
     <section className={styles.page}>
@@ -23,14 +25,14 @@ export default function LoansPage() {
           </div>
         </div>
         <div className={styles.statCard}>
-          <FaCheckCircle className={styles.icon} style={{ color: '#00C9A7' }} />
+          <FaCheckCircle className={styles.icon} style={{ color: "#00C9A7" }} />
           <div>
             <p className={styles.value}>{activeLoans}</p>
             <p className={styles.label}>Active</p>
           </div>
         </div>
         <div className={styles.statCard}>
-          <FaClock className={styles.icon} style={{ color: '#FFA500' }} />
+          <FaClock className={styles.icon} style={{ color: "#FFA500" }} />
           <div>
             <p className={styles.value}>{pendingLoans}</p>
             <p className={styles.label}>Pending</p>
@@ -58,9 +60,9 @@ export default function LoansPage() {
                 <td>{loan.type}</td>
                 <td>
                   <span className={`${styles.status} ${styles[loan.status.toLowerCase()]}`}>
-                    {loan.status === 'Active' && <FaCheckCircle />}
-                    {loan.status === 'Pending' && <FaClock />}
-                    {loan.status === 'Completed' && <FaCheckCircle />}
+                    {loan.status === "Active" && <FaCheckCircle />}
+                    {loan.status === "Pending" && <FaClock />}
+                    {loan.status === "Completed" && <FaCheckCircle />}
                     {loan.status}
                   </span>
                 </td>
